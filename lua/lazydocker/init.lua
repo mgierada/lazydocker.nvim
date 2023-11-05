@@ -5,9 +5,9 @@ M.setup = function(options)
 	config.setup(options)
 end
 
-M.open = function(options)
+M.open = function()
 	local open_action = require("lazydocker.actions.open")
-	open_action.run(options)
+	open_action.run()
 end
 
 return M
