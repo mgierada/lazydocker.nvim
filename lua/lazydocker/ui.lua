@@ -18,10 +18,6 @@ function M.toggle_lazydocker_terminal()
 				vim.cmd("startinsert!")
 				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
 			end,
-			on_close = function(term)
-				vim.cmd("startinsert!")
-				lazydocker_term = nil
-			end,
 		})
 		return lazydocker_term:toggle()
 	end
