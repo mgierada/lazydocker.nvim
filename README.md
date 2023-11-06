@@ -34,7 +34,7 @@ And a new floating terminal with `lazydocker` will pop up.
 
 <img width="1727" alt="image" src="https://github.com/mgierada/lazydocker.nvim/assets/23472449/e9226a71-c20f-48d0-8fb8-72d030bd3711">
 
-For a default keymaps bindings please refer to that (wiki)[https://github.com/jesseduffield/lazydocker/blob/master/docs/keybindings/Keybindings_en.md].
+For a default keymaps bindings please refer to that [wiki](https://github.com/jesseduffield/lazydocker/blob/master/docs/keybindings/Keybindings_en.md).
 
 ## 🔌 Available commands
 
@@ -42,14 +42,14 @@ For a default keymaps bindings please refer to that (wiki)[https://github.com/je
 
 ## ⚡️Requirements
 
-It should work with any fairly modern neovim tech stack. I tested that for the following:
+It should work with any fairly modern neovim version. I tested that for the following:
 
 - `neovim` >= 0.9 and nightly 0.10-dev releases
 - `lazydocker` >= 0.21.1
 
 ## 💻 Installation
 
-Make sure you have `lazydocker` up and running. The in-depth installing walkthrough is perfectly described in that (here)[https://github.com/jesseduffield/lazydocker].
+Make sure you have `lazydocker` up and running. The in-depth installing walkthrough is perfectly described in that [here](https://github.com/jesseduffield/lazydocker).
 
 For a quick start:
 
