@@ -78,7 +78,7 @@ Install the `lazydocker.nvim` neovim plugin with your favourite package manager:
 [Lazy](https://github.com/folke/lazy.nvim)
 
 ```lua
-  -- Pybumper
+  -- lazydocker.nvim
   {
     "mgierada/lazydocker.nvim",
     dependencies = { "akinsho/toggleterm.nvim" },
