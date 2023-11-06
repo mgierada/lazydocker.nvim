@@ -53,7 +53,7 @@ Make sure you have `lazydocker` up and running. The in-depth installing walkthro
 
 For a quick start:
 
-1. Mac users can quickly install using homebrew
+1. Mac users can quickly install using `homebrew`
 
 ```shell
 brew install jesseduffield/lazydocker/lazydocker
