@@ -25,7 +25,7 @@
 
 ## Overview
 
-`lazydocker.nvim` is a `lazydocker` plugin for neovim that allows you to manage your docker environment without leaving your workspace. `lazydocker` itself is a simple terminal UI for both `docker` and `docker-compose`, written in Go.
+`lazydocker.nvim` is a [`lazydocker` plugin](https://github.com/jesseduffield/lazydocker) for neovim that allows you to manage your docker environment without leaving your workspace. `lazydocker` itself is a simple terminal UI for both `docker` and `docker-compose`, written in Go.
 
 ## ✨ Features
 
@@ -52,7 +52,7 @@ It should work with any fairly modern neovim version. I tested that for the foll
 
 ## 💻 Installation
 
-Make sure you have `lazydocker` up and running. The in-depth installing walkthrough is perfectly described in that [here](https://github.com/jesseduffield/lazydocker).
+Make sure you have `lazydocker` up and running. The in-depth installing walkthrough is perfectly described in [here](https://github.com/jesseduffield/lazydocker).
 
 For a quick start:
 
