@@ -5,7 +5,7 @@ local M = {}
 -- @param highlight_group: string - highlight group to use when printing the message
 -- @return nil
 M.__print = function(message, highlight_group)
-	vim.api.nvim_echo({ { "Lazydocker: " .. message, highlight_group or "" } }, {}, {})
+	vim.api.nvim_echo({ { "Lazydocker: " .. message, highlight_group or "" } }, true, {})
 end
 
 --- Prints an error message

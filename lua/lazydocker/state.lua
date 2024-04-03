@@ -1,5 +1,8 @@
 local M = {}
 
+--- Namespace
+-- @field id: number - namespace id
+-- @return M.namespace
 M.namespace = {
 	id = nil,
 	--- Creates plugin specific namespace
