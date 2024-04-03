@@ -4,6 +4,9 @@ local M = {}
 
 local lazydocker_term = nil -- Store the terminal object
 
+--- Toggle the lazydocker terminal
+-- @return nil
+-- @usage require("lazydocker.ui").toggle_lazydocker_terminal()
 function M.toggle_lazydocker_terminal()
 	if lazydocker_term and lazydocker_term:is_open() then
 		lazydocker_term:close()
