@@ -95,4 +95,10 @@ If you want to make sure `lazydocker.nvim` starts whenever Neovim starts, you ca
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=mgierada/lazydocker.nvim&type=Date)](https://star-history.com/#mgierada/lazydocker.nvim&Date)
+<a href="https://star-history.com/#mgierada/lazydocker.nvim&Timeline">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mgierada/lazydocker.nvim&type=Timeline&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mgierada/lazydocker.nvim&type=Timeline" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=mgierada/lazydocker.nvim&type=Timeline" />
+ </picture>
+</a>
