@@ -92,3 +92,7 @@ Install the `lazydocker.nvim` neovim plugin with your favourite package manager:
 ```
 
 If you want to make sure `lazydocker.nvim` starts whenever Neovim starts, you can set an event to `event = "VeryLazy"`
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=mgierada/lazydocker.nvim&type=Date)](https://star-history.com/#mgierada/lazydocker.nvim&Date)
