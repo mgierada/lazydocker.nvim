@@ -47,7 +47,7 @@ For a default keymaps bindings please refer to that [wiki](https://github.com/je
 
 It should work with any fairly modern neovim version. I tested that for the following:
 
-- `neovim` >= 0.9 and nightly 0.10-dev releases
+- `neovim` >= 0.9 and nightly 0.11-dev releases
 - `lazydocker` >= 0.21.1
 
 ## 💻 Installation
