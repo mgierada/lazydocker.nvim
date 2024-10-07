@@ -87,24 +87,24 @@ Install the `lazydocker.nvim` neovim plugin with your favourite package manager:
 
 [Lazy](https://github.com/folke/lazy.nvim)
 
-```
+```lua
 -- lazydocker.nvim
 {
-	"mgierada/lazydocker.nvim",
-	dependencies = { "akinsho/toggleterm.nvim" },
-	config = function()
-		require("lazydocker").setup({})
-	end,
-	event = "BufRead",
-	keys = {
-		{
-			"<leader>ld",
-			function()
-				require("lazydocker").open()
-			end,
-			desc = "Open Lazydocker floating window",
-		},
-	},
+  "mgierada/lazydocker.nvim",
+  dependencies = { "akinsho/toggleterm.nvim" },
+  config = function()
+    require("lazydocker").setup({})
+  end,
+  event = "BufRead",
+  keys = {
+    {
+      "<leader>ld",
+      function()
+        require("lazydocker").open()
+      end,
+      desc = "Open Lazydocker floating window",
+    },
+  },
 },
 ```
 
