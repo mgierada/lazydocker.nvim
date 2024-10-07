@@ -43,6 +43,13 @@ For a default keymaps bindings please refer to that [wiki](https://github.com/je
 
 - `Lazydocker`
 
+## Default keymaps
+
+Any default key map could be easily overwritten by modifying the `keys` property. See the Installation section
+
+- `<leader>ld` -- open lazydocker in floating window
+- `q` -- close the floating window with lazydocker
+
 ## ⚡️Requirements
 
 It should work with any fairly modern neovim version. I tested that for the following:
@@ -86,12 +93,20 @@ Install the `lazydocker.nvim` neovim plugin with your favourite package manager:
     "mgierada/lazydocker.nvim",
     dependencies = { "akinsho/toggleterm.nvim" },
     config = function() require("lazydocker").setup {} end,
+		keys = {
+			{
+				"<leader>ld",
+				function()
+					require("lazydocker").open()
+				end,
+				desc = "Open Lazydocker floating window",
+			},
+		},
     event = "BufRead", -- or any other event you might want to use.
   },
-
 ```
 
-If you want to make sure `lazydocker.nvim` starts whenever Neovim starts, you can set an event to `event = "VeryLazy"`
+If you want to make sure `lazydocker.nvim` starts whenever Neovim starts, you can set an event to `event = "VeryLazy"`.
 
 ## Star History
 
