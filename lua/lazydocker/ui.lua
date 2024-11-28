@@ -1,4 +1,5 @@
 local Terminal = require("toggleterm.terminal").Terminal
+local lazydocker_config = require("lazydocker.config")
 
 local M = {}
 
@@ -16,7 +17,7 @@ function M.toggle_lazydocker_terminal()
 		lazydocker_term = Terminal:new({
 			cmd = "lazydocker",
 			direction = "float",
-			float_opts = { border = "double" },
+			float_opts = { border = lazydocker_config.options.border },
 			on_open = function(term)
 				vim.cmd("startinsert!")
 				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
