@@ -2,7 +2,9 @@ local constants = require("lazydocker.utils.constants")
 local state = require("lazydocker.state")
 
 local M = {
-	__DEFAULT_OPTIONS = {},
+	__DEFAULT_OPTIONS = {
+		border = "double",
+	},
 }
 
 -- Initialize default options
