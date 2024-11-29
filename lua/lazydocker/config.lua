@@ -3,7 +3,8 @@ local state = require("lazydocker.state")
 
 local M = {
 	__DEFAULT_OPTIONS = {
-		border = "double",
+		-- see https://github.com/akinsho/toggleterm.nvim for the reference
+		border = "double", -- valid values are "single" | "double" | "shadow" | "curved",
 	},
 }
 
