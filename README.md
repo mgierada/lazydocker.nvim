@@ -102,7 +102,7 @@ Install the `lazydocker.nvim` neovim plugin with your favourite package manager:
     {
       "<leader>ld",
       function()
-        require("lazydocker").open()
+        require("lazydocker").toggle()
       end,
       desc = "Open Lazydocker floating window",
     },
