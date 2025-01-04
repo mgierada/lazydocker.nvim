@@ -48,7 +48,7 @@ For a default keymaps bindings please refer to that [wiki](https://github.com/je
 Any default key map could be easily overwritten by modifying the `keys` property. See the Installation section
 
 - `<leader>ld` -- open lazydocker in floating window
-- `q` -- close the floating window with lazydocker
+- `q` -- close the floating window with `lazydocker`
 
 ## ⚡️Requirements
 
