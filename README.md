@@ -95,6 +95,8 @@ Install the `lazydocker.nvim` neovim plugin with your favourite package manager:
   config = function()
     require("lazydocker").setup({
 	    border = "curved", -- valid options are "single" | "double" | "shadow" | "curved"
+	    width = 0.9, -- width of the floating window (0-1 for percentage, >1 for absolute columns)
+	    height = 0.9, -- height of the floating window (0-1 for percentage, >1 for absolute rows)
     })
   end,
   event = "BufRead",
@@ -111,6 +113,56 @@ Install the `lazydocker.nvim` neovim plugin with your favourite package manager:
 ```
 
 If you want to make sure `lazydocker.nvim` starts whenever Neovim starts, you can set an event to `event = "VeryLazy"`.
+
+## ⚙️ Configuration
+
+The plugin supports the following configuration options:
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `border` | string | `"double"` | Border style for the floating window. Valid options: `"single"`, `"double"`, `"shadow"`, `"curved"` |
+| `width` | number | `0.9` | Width of the floating window. Values between 0 and 1 represent a percentage of the editor width. Values greater than 1 represent absolute column count. |
+| `height` | number | `0.9` | Height of the floating window. Values between 0 and 1 represent a percentage of the editor height. Values greater than 1 represent absolute row count. |
+
+### Configuration Examples
+
+**Default configuration** (90% width and height):
+```lua
+require("lazydocker").setup({
+  border = "double",
+  width = 0.9,
+  height = 0.9,
+})
+```
+
+**Full screen floating window**:
+```lua
+require("lazydocker").setup({
+  border = "curved",
+  width = 1,
+  height = 1,
+})
+```
+
+**Smaller floating window** (70% width and height):
+```lua
+require("lazydocker").setup({
+  border = "single",
+  width = 0.7,
+  height = 0.7,
+})
+```
+
+**Fixed size window** (120 columns by 40 rows):
+```lua
+require("lazydocker").setup({
+  border = "double",
+  width = 120,
+  height = 40,
+})
+```
+
+**Note**: If you don't specify `width` or `height`, the plugin will use the default values (0.9), ensuring backward compatibility.
 
 ## Star History
 
