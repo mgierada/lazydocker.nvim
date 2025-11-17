@@ -12,7 +12,7 @@ prepare:
 # Run all tests
 test: prepare
 	@echo "Running tests..."
-	nvim --headless -u tests/minimal_init.lua +"lua require('plenary.test_harness').test_directory('tests', { minimal_init = 'tests/minimal_init.lua' })" +qall
+	nvim --headless -u tests/minimal_init.lua -c "luafile tests/run.lua"
 
 # Clean test dependencies
 clean:
