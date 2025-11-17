@@ -1,0 +1,27 @@
+local logger = require("lazydocker.utils.logger")
+
+describe("logger", function()
+	describe("__print", function()
+		it("should be a function", function()
+			assert.is_function(logger.__print)
+		end)
+	end)
+
+	describe("error", function()
+		it("should be a function", function()
+			assert.is_function(logger.error)
+		end)
+	end)
+
+	describe("warn", function()
+		it("should be a function", function()
+			assert.is_function(logger.warn)
+		end)
+	end)
+
+	describe("info", function()
+		it("should be a function", function()
+			assert.is_function(logger.info)
+		end)
+	end)
+end)

@@ -1,0 +1,27 @@
+local lazydocker = require("lazydocker")
+
+describe("init", function()
+	describe("setup", function()
+		it("should be a function", function()
+			assert.is_function(lazydocker.setup)
+		end)
+
+		it("should setup without errors", function()
+			assert.has_no.errors(function()
+				lazydocker.setup()
+			end)
+		end)
+
+		it("should accept options", function()
+			assert.has_no.errors(function()
+				lazydocker.setup({ border = "single" })
+			end)
+		end)
+	end)
+
+	describe("open", function()
+		it("should be a function", function()
+			assert.is_function(lazydocker.open)
+		end)
+	end)
+end)
