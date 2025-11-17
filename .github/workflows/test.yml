@@ -1,6 +1,7 @@
 name: Tests
 
 on:
+  pull_request:
   push:
     branches: [main]
 
@@ -13,8 +14,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        neovim-version: ['stable', 'nightly']
-    
+        neovim-version: ["stable", "nightly"]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
