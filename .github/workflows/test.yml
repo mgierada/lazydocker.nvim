@@ -2,9 +2,7 @@ name: Tests
 
 on:
   push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+    branches: [main]
 
 jobs:
   test:
@@ -19,7 +17,7 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Neovim
         uses: rhysd/action-setup-vim@v1

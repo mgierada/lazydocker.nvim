@@ -191,10 +191,9 @@ make clean
 ### CI/CD
 
 The project uses GitHub Actions to automatically run tests on:
-- Every push to `main`/`master` branch
-- Every pull request
+- Every push to `main` branch
 - Multiple OS platforms (Ubuntu, macOS)
-- Multiple Neovim versions (stable, nightly)
+- Neovim versions (stable, nightly)
 
 See `.github/workflows/test.yml` for the full CI configuration.
 
