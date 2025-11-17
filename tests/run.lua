@@ -22,4 +22,9 @@ if not ok then
 end
 
 -- Force exit with the appropriate code
-vim.cmd("cquit " .. exit_code)
+-- Use :quit for success (exit code 0) and :cquit for failure (exit code 1)
+if exit_code == 0 then
+	vim.cmd("quit")
+else
+	vim.cmd("cquit")
+end
