@@ -165,6 +165,37 @@ require("lazydocker").setup({
 ```
 
 **Note**: If you don't specify `width` or `height`, the plugin will use the default values (0.9), ensuring backward compatibility.
+## 🧪 Development
+
+### Running Tests
+
+This project includes a comprehensive test suite using [plenary.nvim](https://github.com/nvim-lua/plenary.nvim).
+
+To run tests locally:
+
+```bash
+make test
+```
+
+This will:
+1. Clone `plenary.nvim` into `deps/` directory
+2. Run all tests using Neovim in headless mode
+
+To clean test dependencies:
+
+```bash
+make clean
+```
+
+### CI/CD
+
+The project uses GitHub Actions to automatically run tests on:
+- Every push to `main`/`master` branch
+- Every pull request
+- Multiple OS platforms (Ubuntu, macOS)
+- Multiple Neovim versions (stable, nightly)
+
+See `.github/workflows/test.yml` for the full CI configuration.
 
 ## Star History
 
