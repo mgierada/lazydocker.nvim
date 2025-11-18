@@ -1,12 +1,9 @@
 -- Test runner script for plenary.nvim
 -- This script loads the test framework and runs all tests
 
--- Store the exit code
-local exit_code = 0
-
--- Wrap test execution to capture failures
-local ok, result = pcall(function()
-	require("plenary.test_harness").test_directory(
+-- Run tests and get results
+local ok, results = pcall(function()
+	return require("plenary.test_harness").test_directory(
 		"tests",
 		{
 			minimal_init = "tests/minimal_init.lua",
@@ -15,16 +12,22 @@ local ok, result = pcall(function()
 	)
 end)
 
--- Set exit code based on result
+-- Check if there were any errors or failures
+local exit_code = 0
+
 if not ok then
-	print("Test execution failed: " .. tostring(result))
+	-- pcall failed - there was an error running tests
+	print("Test execution error: " .. tostring(results))
 	exit_code = 1
+elseif type(results) == "table" then
+	-- Check test results for failures
+	if results.fail and results.fail > 0 then
+		exit_code = 1
+	elseif results.errs and results.errs > 0 then
+		exit_code = 1
+	end
 end
 
--- Force exit with the appropriate code
--- Use :quit for success (exit code 0) and :cquit for failure (exit code 1)
-if exit_code == 0 then
-	vim.cmd("quit")
-else
-	vim.cmd("cquit")
-end
+-- Exit with appropriate code
+-- Use os.exit to ensure proper exit code
+os.exit(exit_code)
