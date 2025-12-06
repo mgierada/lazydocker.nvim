@@ -41,7 +41,12 @@ For a default keymaps bindings please refer to that [wiki](https://github.com/je
 
 ## 🔌 Available commands
 
-- `Lazydocker`
+### Vim Commands
+- `Lazydocker` - Opens the lazydocker floating terminal
+
+### Lua API
+- `require("lazydocker").open()` - Opens the lazydocker floating terminal
+- `require("lazydocker").toggle()` - Toggles the lazydocker floating terminal (opens if closed, closes if open)
 
 ## Default keymaps
 
@@ -104,9 +109,9 @@ Install the `lazydocker.nvim` neovim plugin with your favourite package manager:
     {
       "<leader>ld",
       function()
-        require("lazydocker").open()
+        require("lazydocker").toggle()
       end,
-      desc = "Open Lazydocker floating window",
+      desc = "Toggle Lazydocker floating window",
     },
   },
 },

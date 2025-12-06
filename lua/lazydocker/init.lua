@@ -15,4 +15,11 @@ M.open = function()
 	open_action.run()
 end
 
+--- toggle the lazydocker UI (open if closed, close if open)
+-- @return nil
+M.toggle = function()
+	local open_action = require("lazydocker.actions.open")
+	open_action.run()
+end
+
 return M
