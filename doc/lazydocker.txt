@@ -1,0 +1,174 @@
+*lazydocker.txt*    *lazydocker*
+
+Lazydocker.nvim — Neovim integration for the lazydocker TUI
+Provides a lightweight floating-window integration for the lazydocker terminal UI so you can inspect and control Docker directly from Neovim.
+
+INTRODUCTION                                  *lazydocker-intro*
+    Lazydocker.nvim is a small Neovim Lua plugin that opens the
+    lazydocker terminal UI in a floating window. It is intended for
+    Neovim users who want quick access to lazydocker without
+    switching to another terminal. This document explains installation,
+    configuration, usage, troubleshooting and contribution notes.
+
+REQUIREMENTS                                  *lazydocker-requirements*
+    - Neovim 0.7+ (recommended 0.9+)
+    - The external `lazydocker` executable must be installed and
+      available in your PATH. See https://github.com/jesseduffield/lazydocker
+    - Lua and a plugin manager (examples below use packer.nvim and lazy.nvim)
+
+INSTALLATION                                  *lazydocker-install*
+    Example with packer.nvim:
+        use {
+            'mgierada/lazydocker.nvim',
+            config = function()
+                require('lazydocker').setup{}
+            end
+        }
+
+    Example with lazy.nvim:
+        {
+            'mgierada/lazydocker.nvim',
+            config = function()
+                require('lazydocker').setup{}
+            end
+        }
+
+    Example with vim-plug (init.lua or init.vim + packer-style config is preferred):
+        Plug 'mgierada/lazydocker.nvim'
+        " Then configure in your lua config
+
+    After adding the file to your runtime, generate help tags:
+        :helptags doc/
+    (From shell: nvim --headless -c "helptags doc/" -c q)
+
+QUICK START / USAGE                           *lazydocker-usage*
+    Open the UI:
+        - Use the plugin command (if present): :LazyDockerToggle
+        - Or call from Lua:
+            require('lazydocker').toggle()
+
+    Example minimal keymap (init.lua):
+        vim.keymap.set('n', '<leader>ld', require('lazydocker').toggle, {desc = "Toggle Lazydocker"})
+
+    Typical usage flow:
+        1. Open lazydocker via toggle command or keymap.
+        2. Interact using lazydocker's keys inside the floating terminal.
+        3. Close the UI with the toggle keymap again or the close mapping (q / <Esc>).
+
+CONFIGURATION                                  *lazydocker-configuration*
+    The plugin exposes a setup() function that accepts an options table.
+    Call it from your lua config:
+        require('lazydocker').setup({
+            cmd = "lazydocker",          "string"  -- command to run
+            float = {
+                border = "rounded",     "string"  -- "none" | "single" | "double" | "rounded" | "shadow"
+                width = 0.9,            "number"  -- fraction of editor width or absolute columns if > 1
+                height = 0.9,           "number"  -- fraction of editor height or absolute rows if > 1
+                winblend = 0,          "number"  -- transparency
+            },
+            border_chars = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },  "table"
+            on_open = nil,              "function|nil"  -- callback(window, buf) when opened
+            on_close = nil,             "function|nil"  -- callback() when closed
+            keymaps = {
+                toggle = '<leader>ld',  "string"  -- keymap for toggling UI from setup helper (optional)
+                close = 'q',            "string"  -- key inside floating window to close
+            },
+            direction = 'float',        "string"  -- 'float' | 'vertical' | 'horizontal'
+            term_opts = {               "table"   -- options passed to terminal buffer (optional)
+                -- example: hidden = true, buffer options, etc.
+            }
+        })
+
+    Default values (example defaults used by this documentation):
+        cmd = "lazydocker"
+        float = { border = "rounded", width = 0.9, height = 0.9, winblend = 0 }
+        keymaps = { toggle = "<leader>ld", close = "q" }
+        direction = "float"
+
+    Notes:
+        - If you set `direction` to 'vertical' or 'horizontal', the plugin will open a split
+          instead of a floating window; width/height will be interpreted accordingly.
+        - Callbacks `on_open` and `on_close` are useful for setting autocommands or adjusting state.
+
+COMMANDS AND KEYMAPS                          *lazydocker-commands*
+    Public commands (depending on implementation — adjust if your plugin exposes different names):
+        :LazyDockerToggle    Toggle the lazydocker UI
+        :LazyDockerOpen      Open the lazydocker UI
+        :LazyDockerClose     Close the lazydocker UI
+
+    Recommended user keymaps:
+        lua:
+            vim.keymap.set('n', '<leader>ld', require('lazydocker').toggle, {desc = "Toggle Lazydocker"})
+        Or set the keymap via setup if the plugin supports registering a mapping.
+
+    If the plugin code exposes different command names, replace them above or pass names in setup.
+
+MAPPINGS INSIDE THE FLOATING WINDOW          *lazydocker-window-mappings*
+    Default (inside the floating terminal buffer) — these are suggestions; the plugin may set
+    some of them by default. You can override them in setup or with autocommands.
+
+        - q, <Esc>, <C-c>   : close/exit the floating window (plugin close handler)
+        - <Enter>           : send Enter to lazydocker (select)
+        - hjkl / arrow keys : navigate where lazydocker supports it
+        - ?                 : lazydocker help (dependent on lazydocker version)
+
+    To override these mappings from your config, set `keymaps` in setup() or create buffer-local
+    mappings using the `on_open` callback:
+        require('lazydocker').setup({
+            on_open = function(win, buf)
+                vim.api.nvim_buf_set_keymap(buf, 'n', 'q', '<Cmd>lua require("lazydocker").close()<CR>', {nowait=true, noremap=true, silent=true})
+            end,
+        })
+
+AUTOCOMMANDS AND INTEGRATION NOTES           *lazydocker-autocmds*
+    Useful autocommands:
+        - Save/restore window layout:
+            vim.cmd([[
+                augroup Lazydocker
+                  autocmd!
+                  autocmd TermOpen * if &buftype ==# 'terminal' | " custom logic here " | endif
+                augroup END
+            ]])
+
+    Integration with other plugins:
+        - If you use session managers, consider excluding the lazydocker terminal buffer
+          from persisted buffers or saving and restoring its state via on_open/on_close.
+
+TROUBLESHOOTING / FAQ                        *lazydocker-faq*
+    Q: The command fails to open / I get "executable not found".
+    A:
+        - Ensure `lazydocker` is installed and in your PATH.
+        - From Neovim run:
+            :lua print(vim.fn.executable('lazydocker'))
+          returns 1 when found, 0 otherwise.
+        - If installed via a package manager, make sure your shell PATH is available to Neovim
+          (check your shell initialization files and how Neovim is launched).
+
+    Q: Floating window is too small or too large.
+    A:
+        - Adjust |float.width| and |float.height| in your setup configuration.
+        - If you prefer a split, set |direction| = 'vertical' or 'horizontal'.
+
+    Q: I want different internal keybindings than the defaults.
+    A:
+        - Use |on_open| callback to set buffer-local mappings, or configure |keymaps| if the plugin exposes it.
+
+DEVELOPMENT / CONTRIBUTING                   *lazydocker-contributing*
+    - Run tests and linters (if present) before opening a PR.
+    - Keep code style consistent with the project's style (lua-format, stylua, etc.) if applicable.
+    - To update or regenerate help tags locally after editing doc/lazydocker.txt:
+        :helptags doc/
+      Or from shell:
+        nvim --headless -c "helptags doc/" -c q
+
+CREDITS AND LICENSE                          *lazydocker-license*
+    This documentation was written for the lazydocker.nvim plugin.
+    The plugin repository's LICENSE file governs license and attribution.
+    See the repository root for license details.
+
+SEE ALSO                                     *lazydocker-see-also*
+    - Lazy.nvim: https://github.com/folke/lazy.nvim
+    - packer.nvim: https://github.com/wbthomason/packer.nvim
+    - Lazydocker upstream: https://github.com/jesseduffield/lazydocker
+
+END                                          *lazydocker-end*
