@@ -158,17 +158,23 @@ Options:~
 ==============================================================================
 6. KEYMAPS                                            *lazydocker-keymaps*
 
-Default keymaps:~
+Plugin keymaps:~
 
-  <leader>ld    Open/toggle lazydocker in a floating window
-  q             Close the floating window (when in normal mode)
+  The plugin does not set any keymaps by default. You need to configure
+  them yourself in your plugin manager configuration.
 
-Note: The <leader>ld keymap is not set by default. You need to configure
-it yourself in your plugin manager configuration (see |lazydocker-examples|).
+  Suggested keymap:
+    <leader>ld    Open/toggle lazydocker in a floating window
+                  (see |lazydocker-examples| for configuration)
 
-Within the lazydocker terminal, you can use all the default lazydocker
-keybindings. For a complete list, see:
-https://github.com/jesseduffield/lazydocker/blob/master/docs/keybindings/Keybindings_en.md
+Terminal keymaps:~
+
+  When the lazydocker terminal is open:
+    q             Close the floating window (when in normal mode)
+
+  Within the lazydocker terminal, you can use all the default lazydocker
+  keybindings. For a complete list, see:
+  https://github.com/jesseduffield/lazydocker/blob/master/docs/keybindings/Keybindings_en.md
 
 ==============================================================================
 7. FUNCTIONS                                        *lazydocker-functions*
