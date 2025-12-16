@@ -45,7 +45,6 @@ Features:~
 
 To install lazydocker:~
   macOS:
-    brew install jesseduffield/lazydocker/lazydocker
     brew install lazydocker
 
   Windows (scoop or Chocolatey):
