@@ -54,8 +54,7 @@ function M.check()
 		report_ok("lazydocker binary found in PATH")
 	else
 		report_error(
-			"lazydocker binary not found in PATH. "
-				.. "Install it from: https://github.com/jesseduffield/lazydocker"
+			"lazydocker binary not found in PATH. " .. "Install it from: https://github.com/jesseduffield/lazydocker"
 		)
 	end
 
