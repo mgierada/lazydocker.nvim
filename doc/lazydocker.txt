@@ -2,7 +2,7 @@
 
                         LAZYDOCKER.NVIM
 
-Author:   mgierada
+Author:   Maciej Gierada, PhD @mgierada
 License:  MIT
 Homepage: https://github.com/mgierada/lazydocker.nvim
 
