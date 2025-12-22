@@ -1,0 +1,271 @@
+*lazydocker.txt*  A lazydocker plugin for Neovim
+
+                        LAZYDOCKER.NVIM
+
+Author:   mgierada
+License:  MIT
+Homepage: https://github.com/mgierada/lazydocker.nvim
+
+==============================================================================
+CONTENTS                                              *lazydocker-contents*
+
+  1. Introduction .......................... |lazydocker-introduction|
+  2. Requirements .......................... |lazydocker-requirements|
+  3. Installation .......................... |lazydocker-installation|
+  4. Configuration ......................... |lazydocker-configuration|
+  5. Commands .............................. |lazydocker-commands|
+  6. Keymaps ............................... |lazydocker-keymaps|
+  7. Functions ............................. |lazydocker-functions|
+  8. Examples .............................. |lazydocker-examples|
+
+==============================================================================
+1. INTRODUCTION                                   *lazydocker-introduction*
+                                                  *lazydocker*
+
+lazydocker.nvim is a Neovim plugin that integrates the lazydocker terminal
+UI directly into your editor. It allows you to manage your Docker
+environment without leaving your workspace.
+
+lazydocker is a simple terminal UI for both docker and docker-compose,
+written in Go. This plugin wraps it in a floating terminal window within
+Neovim, providing seamless Docker management capabilities.
+
+Features:~
+  • Toggle lazydocker in a floating terminal window
+  • Configurable window size and border style
+  • Simple command and keymap interface
+  • Non-intrusive workflow integration
+
+==============================================================================
+2. REQUIREMENTS                                   *lazydocker-requirements*
+
+• Neovim >= 0.9 (tested with nightly 0.11-dev releases)
+• lazydocker >= 0.21.1
+• toggleterm.nvim plugin (dependency)
+
+To install lazydocker:~
+  macOS:
+    brew install lazydocker
+
+  Windows (scoop or Chocolatey):
+    scoop install lazydocker
+    choco install lazydocker
+
+  Linux (aur):
+    yay -S lazydocker
+
+For more installation options, see:
+https://github.com/jesseduffield/lazydocker
+
+==============================================================================
+3. INSTALLATION                                   *lazydocker-installation*
+
+Install using your preferred plugin manager:
+
+lazy.nvim:~
+>lua
+  {
+    "mgierada/lazydocker.nvim",
+    dependencies = { "akinsho/toggleterm.nvim" },
+    config = function()
+      require("lazydocker").setup({
+        border = "curved",
+        width = 0.9,
+        height = 0.9,
+      })
+    end,
+    event = "BufRead",
+    keys = {
+      {
+        "<leader>ld",
+        function()
+          require("lazydocker").open()
+        end,
+        desc = "Open Lazydocker floating window",
+      },
+    },
+  }
+<
+
+Packer.nvim:~
+>lua
+  use {
+    "mgierada/lazydocker.nvim",
+    requires = { "akinsho/toggleterm.nvim" },
+    config = function()
+      require("lazydocker").setup()
+    end,
+  }
+<
+
+vim-plug:~
+>vim
+  Plug 'akinsho/toggleterm.nvim'
+  Plug 'mgierada/lazydocker.nvim'
+<
+
+If you want the plugin to start whenever Neovim starts, set the event
+to "VeryLazy".
+
+==============================================================================
+4. CONFIGURATION                                 *lazydocker-configuration*
+
+                                                 *lazydocker.setup()*
+Setup the plugin with custom options.
+
+Usage:~
+>lua
+  require("lazydocker").setup({
+    border = "double",
+    width = 0.9,
+    height = 0.9,
+  })
+<
+
+Options:~
+
+  {border}                                       *lazydocker-config-border*
+    Type: `string`
+    Default: `"double"`
+    
+    Border style for the floating window.
+    Valid options: "single", "double", "shadow", "curved"
+
+  {width}                                        *lazydocker-config-width*
+    Type: `number`
+    Default: `0.9`
+    
+    Width of the floating window.
+    • Values between 0 and 1 represent a percentage of editor width
+    • Values greater than 1 represent absolute column count
+
+  {height}                                       *lazydocker-config-height*
+    Type: `number`
+    Default: `0.9`
+    
+    Height of the floating window.
+    • Values between 0 and 1 represent a percentage of editor height
+    • Values greater than 1 represent absolute row count
+
+==============================================================================
+5. COMMANDS                                          *lazydocker-commands*
+
+                                                     *:Lazydocker*
+:Lazydocker
+    Toggle the lazydocker floating terminal window. If the window is open,
+    it will be closed. If it's closed, it will be opened.
+
+==============================================================================
+6. KEYMAPS                                            *lazydocker-keymaps*
+
+Plugin keymaps:~
+
+  The plugin does not set any keymaps by default. You need to configure
+  them yourself in your plugin manager configuration.
+
+  Suggested keymap:
+    <leader>ld    Open/toggle lazydocker in a floating window
+                  (see |lazydocker-examples| for configuration)
+
+Terminal keymaps:~
+
+  When the lazydocker terminal is open:
+    q             Close the floating window (when in normal mode)
+
+  Within the lazydocker terminal, you can use all the default lazydocker
+  keybindings. For a complete list, see:
+  https://github.com/jesseduffield/lazydocker/blob/master/docs/keybindings/Keybindings_en.md
+
+==============================================================================
+7. FUNCTIONS                                        *lazydocker-functions*
+
+                                                    *lazydocker.setup()*
+require("lazydocker").setup({opts})
+    Initialize the plugin with the given options.
+    
+    Parameters:~
+      {opts}  (table|nil)  Configuration options (see |lazydocker-configuration|)
+    
+    Returns:~
+      nil
+
+                                                    *lazydocker.open()*
+require("lazydocker").open()
+    Open or toggle the lazydocker floating terminal window.
+    
+    Returns:~
+      nil
+
+==============================================================================
+8. EXAMPLES                                          *lazydocker-examples*
+
+Basic setup:~
+>lua
+  require("lazydocker").setup()
+<
+
+Custom border and size:~
+>lua
+  require("lazydocker").setup({
+    border = "curved",
+    width = 0.8,
+    height = 0.8,
+  })
+<
+
+Full screen floating window:~
+>lua
+  require("lazydocker").setup({
+    border = "curved",
+    width = 1,
+    height = 1,
+  })
+<
+
+Fixed size window (120 columns by 40 rows):~
+>lua
+  require("lazydocker").setup({
+    border = "double",
+    width = 120,
+    height = 40,
+  })
+<
+
+With keymap configuration (using lazy.nvim):~
+>lua
+  {
+    "mgierada/lazydocker.nvim",
+    dependencies = { "akinsho/toggleterm.nvim" },
+    config = function()
+      require("lazydocker").setup({
+        border = "curved",
+        width = 0.9,
+        height = 0.9,
+      })
+    end,
+    keys = {
+      {
+        "<leader>ld",
+        function()
+          require("lazydocker").open()
+        end,
+        desc = "Open Lazydocker",
+      },
+    },
+  }
+<
+
+Manual keymap setup:~
+>lua
+  vim.keymap.set("n", "<leader>ld", function()
+    require("lazydocker").open()
+  end, { desc = "Open Lazydocker" })
+<
+
+Using the command:~
+>vim
+  :Lazydocker
+<
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
