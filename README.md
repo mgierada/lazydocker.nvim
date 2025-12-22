@@ -114,6 +114,8 @@ Install the `lazydocker.nvim` neovim plugin with your favourite package manager:
 
 If you want to make sure `lazydocker.nvim` starts whenever Neovim starts, you can set an event to `event = "VeryLazy"`.
 
+To check if all is setup correctly, run `:checkhealth lazydocker` in your neovim.
+
 ## ⚙️ Configuration
 
 The plugin supports the following configuration options:
