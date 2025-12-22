@@ -179,16 +179,6 @@ Terminal keymaps:~
 ==============================================================================
 7. FUNCTIONS                                        *lazydocker-functions*
 
-                                                    *lazydocker.setup()*
-require("lazydocker").setup({opts})
-    Initialize the plugin with the given options.
-    
-    Parameters:~
-      {opts}  (table|nil)  Configuration options (see |lazydocker-configuration|)
-    
-    Returns:~
-      nil
-
                                                     *lazydocker.open()*
 require("lazydocker").open()
     Open or toggle the lazydocker floating terminal window.
