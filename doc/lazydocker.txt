@@ -2,7 +2,7 @@
 
                         LAZYDOCKER.NVIM
 
-Author:   mgierada
+Author:   Maciej Gierada, PhD @mgierada
 License:  MIT
 Homepage: https://github.com/mgierada/lazydocker.nvim
 
@@ -178,16 +178,6 @@ Terminal keymaps:~
 
 ==============================================================================
 7. FUNCTIONS                                        *lazydocker-functions*
-
-                                                    *lazydocker.setup()*
-require("lazydocker").setup({opts})
-    Initialize the plugin with the given options.
-    
-    Parameters:~
-      {opts}  (table|nil)  Configuration options (see |lazydocker-configuration|)
-    
-    Returns:~
-      nil
 
                                                     *lazydocker.open()*
 require("lazydocker").open()
