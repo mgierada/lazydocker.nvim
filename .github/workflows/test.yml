@@ -30,6 +30,7 @@ jobs:
         run: |
           mkdir -p deps
           git clone --depth 1 https://github.com/nvim-lua/plenary.nvim deps/plenary.nvim
+          git clone --depth 1 https://github.com/akinsho/toggleterm.nvim deps/toggleterm.nvim
 
       - name: Run tests
         timeout-minutes: 10
