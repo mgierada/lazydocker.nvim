@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        neovim-version: ["stable", "nightly"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Install Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: ${{ matrix.neovim-version }}
+
+      - name: Setup test environment
+        run: |
+          mkdir -p deps
+          git clone --depth 1 https://github.com/nvim-lua/plenary.nvim deps/plenary.nvim
+          git clone --depth 1 https://github.com/akinsho/toggleterm.nvim deps/toggleterm.nvim
+
+      - name: Run tests
+        timeout-minutes: 10
+        run: |
+          nvim --version
+          nvim --headless -u tests/minimal_init.lua -c "luafile tests/run.lua"

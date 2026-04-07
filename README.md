@@ -17,6 +17,7 @@
 ![License](https://img.shields.io/badge/License-MIT-brightgreen?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Stable-informational?style=flat-square)
 ![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg?style=flat-square&logo=Neovim&logoColor=white)
+[![Tests](https://github.com/mgierada/lazydocker.nvim/workflows/Tests/badge.svg)](https://github.com/mgierada/lazydocker.nvim/actions/workflows/test.yml)
 [![Default keymaps](https://img.shields.io/badge/Default%20keymaps-Documentation-blue.svg)](https://github.com/jesseduffield/lazydocker/blob/master/docs/keybindings/Keybindings_en.md)
 
 </div>
@@ -165,6 +166,36 @@ require("lazydocker").setup({
 ```
 
 **Note**: If you don't specify `width` or `height`, the plugin will use the default values (0.9), ensuring backward compatibility.
+## 🧪 Development
+
+### Running Tests
+
+This project includes a comprehensive test suite using [plenary.nvim](https://github.com/nvim-lua/plenary.nvim).
+
+To run tests locally:
+
+```bash
+make test
+```
+
+This will:
+1. Clone `plenary.nvim` into `deps/` directory
+2. Run all tests using Neovim in headless mode
+
+To clean test dependencies:
+
+```bash
+make clean
+```
+
+### CI/CD
+
+The project uses GitHub Actions to automatically run tests on:
+- Every push to `main` branch
+- OS platforms (Ubuntu, macOS)
+- Neovim versions (stable, nightly)
+
+See `.github/workflows/test.yml` for the full CI configuration.
 
 ## Star History
 
